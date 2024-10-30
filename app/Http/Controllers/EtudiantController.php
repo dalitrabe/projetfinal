@@ -20,11 +20,12 @@ class EtudiantController extends Controller
     public function create()
     {
         // Récupère toutes les classes
-        $classe = Classe::all();  // Correction de l'opérateur =
+        $classes = Classe::all();  // Correction de $classe en $classes
         
         // Retourne la vue 'create' avec la liste des classes
-        return view('create', compact('classes'));
+        return view('create', compact('classes'));  // Utilisation de 'classes' ici aussi
     }
+    
 
     public function store(Request $request)
     {
@@ -83,6 +84,6 @@ class EtudiantController extends Controller
        return redirect()->route('etudiant')
                        ->with('success','Post deleted successfully'); 
    }
-    }
+}
 
 

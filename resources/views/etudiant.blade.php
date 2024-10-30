@@ -28,7 +28,7 @@
                 <td>{{$loop->index}}</td>
                 <td>{{$value->nom}}</td>
                 <td>{{$value->prenom}}</td>
-                <td>{{ $value->classe->libelle}}</td> 
+                <td>{{ $value->classes->libelle}}</td> 
                 <td>
                 <form action="{{ route('etudiant.delete', $value->id) }}" method="post">
                     <a class="btn btn-info" href="{{ route('etudiant.show',$value->id)}}">Show</a>

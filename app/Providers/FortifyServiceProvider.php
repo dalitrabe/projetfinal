@@ -33,6 +33,25 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        // Ajout de la vue de connexion
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+
+        // Méthode d'authentification personnalisée
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->email)->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+        });
+
+        // Ajout de la vue d'inscription
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 
@@ -44,3 +63,4 @@ class FortifyServiceProvider extends ServiceProvider
         });
     }
 }
+
