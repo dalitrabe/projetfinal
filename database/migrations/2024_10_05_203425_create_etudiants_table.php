@@ -8,15 +8,20 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
+        Schema::create('etudiants', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->foreignId('classes_id')->constrained('classes');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('etudiants');
     }
 };
+

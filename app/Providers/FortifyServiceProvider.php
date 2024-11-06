@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+use App\Models\User; // Ajoutez cette ligne en haut du fichier
+use Illuminate\Support\Facades\Hash;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
